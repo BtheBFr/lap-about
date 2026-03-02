@@ -1,0 +1,460 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>B the B | Навигатор проектов</title>
+    <link rel="icon" type="image/png" href="favicon.png">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+        }
+
+        body {
+            min-height: 100vh;
+            background: linear-gradient(135deg, #0a1a0f 0%, #1a2f1a 100%);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 1.5rem;
+        }
+
+        .container {
+            max-width: 1200px;
+            width: 100%;
+            margin: 2rem auto;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .header h1 {
+            font-size: 4rem;
+            font-weight: 800;
+            letter-spacing: -0.02em;
+            background: linear-gradient(135deg, #fff 0%, #8bff99 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 0.5rem;
+            text-shadow: 0 0 30px rgba(139, 255, 153, 0.3);
+        }
+
+        .header p {
+            color: rgba(255, 255, 255, 0.6);
+            font-size: 1.2rem;
+            letter-spacing: 0.3px;
+        }
+
+        .announcements {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            justify-content: center;
+            margin: 2rem 0 3rem 0;
+        }
+
+        .announcement-card {
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            border-radius: 100px;
+            padding: 0.8rem 1.8rem;
+            display: inline-flex;
+            align-items: center;
+            gap: 1rem;
+            transition: all 0.3s ease;
+            cursor: default;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        .announcement-card:hover {
+            transform: translateY(-2px);
+            border-color: rgba(139, 255, 153, 0.3);
+            background: rgba(255, 255, 255, 0.05);
+        }
+
+        .announcement-badge {
+            padding: 0.3rem 1rem;
+            border-radius: 100px;
+            font-size: 0.75rem;
+            font-weight: 700;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+        }
+
+        .badge-news {
+            background: linear-gradient(135deg, #8bff99, #6de08a);
+            color: #0a1a0f;
+            box-shadow: 0 0 15px rgba(139, 255, 153, 0.5);
+        }
+
+        .badge-upcoming {
+            background: rgba(255, 193, 112, 0.2);
+            color: #ffc170;
+            border: 1px solid #ffc17040;
+        }
+
+        .announcement-text {
+            color: white;
+            font-size: 1rem;
+            font-weight: 500;
+        }
+
+        .announcement-date {
+            color: rgba(255, 255, 255, 0.4);
+            font-size: 0.85rem;
+            display: flex;
+            align-items: center;
+            gap: 0.3rem;
+        }
+
+        .announcement-date i {
+            font-size: 0.7rem;
+        }
+
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .project-card {
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            border-radius: 2rem;
+            padding: 2rem;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+        }
+
+        .project-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+            border-color: rgba(139, 255, 153, 0.3);
+        }
+
+        .status {
+            display: inline-block;
+            padding: 0.3rem 1rem;
+            border-radius: 100px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+            margin-bottom: 1.5rem;
+            background: rgba(255, 255, 255, 0.1);
+            color: rgba(255, 255, 255, 0.7);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            align-self: flex-start;
+        }
+
+        .status.active {
+            background: linear-gradient(135deg, #8bff9920, #6de08a20);
+            color: #8bff99;
+            border-color: #8bff9940;
+        }
+
+        .status.soon {
+            background: rgba(255, 193, 112, 0.1);
+            color: #ffc170;
+            border-color: #ffc17040;
+        }
+
+        .status.wip {
+            background: rgba(78, 205, 196, 0.1);
+            color: #4ecdc4;
+            border-color: #4ecdc440;
+        }
+
+        .project-title {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: white;
+            margin-bottom: 1rem;
+            line-height: 1.3;
+            min-height: 4.5rem;
+        }
+
+        .project-description {
+            color: rgba(255, 255, 255, 0.6);
+            font-size: 1rem;
+            line-height: 1.6;
+            margin-bottom: 2rem;
+            flex-grow: 1;
+        }
+
+        .link-container {
+            background: rgba(0, 0, 0, 0.3);
+            border-radius: 1rem;
+            padding: 0.5rem;
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            margin-top: auto;
+        }
+
+        .link-text {
+            flex: 1;
+            color: rgba(255, 255, 255, 0.5);
+            font-size: 0.9rem;
+            padding: 0.5rem 1rem;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            background: rgba(0, 0, 0, 0.2);
+            border-radius: 0.8rem;
+            font-family: monospace;
+        }
+
+        .copy-btn {
+            background: rgba(255, 255, 255, 0.05);
+            border: none;
+            color: rgba(255, 255, 255, 0.7);
+            width: 40px;
+            height: 40px;
+            border-radius: 12px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            font-size: 1.2rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .copy-btn:hover {
+            background: #8bff99;
+            color: #0a1a0f;
+            transform: scale(1.05);
+            border-color: transparent;
+        }
+
+        .copy-btn.copied {
+            background: #10b981;
+            color: white;
+        }
+
+        .open-btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            width: 100%;
+            background: linear-gradient(135deg, #8bff99, #6de08a);
+            color: #0a1a0f;
+            text-decoration: none;
+            padding: 1rem;
+            border-radius: 1rem;
+            font-weight: 600;
+            font-size: 1rem;
+            letter-spacing: 0.5px;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .open-btn:hover {
+            background: linear-gradient(135deg, #9effaa, #7df09a);
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(139, 255, 153, 0.3);
+        }
+
+        .open-btn i {
+            font-size: 1.1rem;
+        }
+
+        .toast {
+            position: fixed;
+            bottom: 2rem;
+            left: 50%;
+            transform: translateX(-50%) translateY(100px);
+            background: rgba(0, 0, 0, 0.8);
+            backdrop-filter: blur(10px);
+            color: white;
+            padding: 1rem 2rem;
+            border-radius: 100px;
+            font-size: 0.95rem;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+            transition: transform 0.3s ease;
+            z-index: 1000;
+        }
+
+        .toast.show {
+            transform: translateX(-50%) translateY(0);
+        }
+
+        .toast i {
+            color: #8bff99;
+            margin-right: 0.5rem;
+        }
+
+        .footer {
+            text-align: center;
+            margin-top: 4rem;
+            color: rgba(255, 255, 255, 0.3);
+            font-size: 0.9rem;
+        }
+
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 3rem;
+            }
+            
+            .projects-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .announcement-card {
+                width: 100%;
+                justify-content: center;
+            }
+            
+            .project-title {
+                min-height: auto;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>B the B</h1>
+            <p>все работы в одном месте</p>
+        </div>
+
+        <div class="announcements" id="announcements-container"></div>
+
+        <div class="projects-grid" id="projects-container"></div>
+
+        <div class="footer">
+            <p>B the B · 2026</p>
+        </div>
+    </div>
+
+    <div id="toast" class="toast">
+        <i class="fas fa-check-circle"></i>
+        <span id="toast-message">Ссылка скопирована!</span>
+    </div>
+
+    <script src="projects.js"></script>
+    <script>
+        function copyToClipboard(text, buttonElement) {
+            navigator.clipboard.writeText(text).then(() => {
+                buttonElement.classList.add('copied');
+                const originalIcon = buttonElement.innerHTML;
+                buttonElement.innerHTML = '<i class="fas fa-check"></i>';
+                
+                const toast = document.getElementById('toast');
+                toast.classList.add('show');
+                
+                setTimeout(() => {
+                    buttonElement.classList.remove('copied');
+                    buttonElement.innerHTML = originalIcon;
+                }, 1500);
+                
+                setTimeout(() => {
+                    toast.classList.remove('show');
+                }, 2000);
+            }).catch(err => {
+                const textarea = document.createElement('textarea');
+                textarea.value = text;
+                document.body.appendChild(textarea);
+                textarea.select();
+                document.execCommand('copy');
+                document.body.removeChild(textarea);
+                
+                buttonElement.classList.add('copied');
+                setTimeout(() => buttonElement.classList.remove('copied'), 1500);
+                
+                const toast = document.getElementById('toast');
+                toast.classList.add('show');
+                setTimeout(() => toast.classList.remove('show'), 2000);
+            });
+        }
+
+        function renderProjects() {
+            const container = document.getElementById('projects-container');
+            container.innerHTML = '';
+            
+            projectsData.forEach(project => {
+                const card = document.createElement('div');
+                card.className = 'project-card';
+                
+                let titleHtml = project.title;
+                if (project.titleSecondLine) {
+                    titleHtml = project.title + '<br>' + project.titleSecondLine;
+                }
+                
+                let iconClass = 'fa-clock';
+                if (project.status === 'active') iconClass = 'fa-check-circle';
+                if (project.status === 'wip') iconClass = 'fa-code-branch';
+                if (project.status === 'soon') iconClass = 'fa-clock';
+                
+                card.innerHTML = `
+                    <span class="status ${project.status}"><i class="fas ${iconClass}" style="margin-right: 5px;"></i> ${project.statusText}</span>
+                    <h2 class="project-title">${titleHtml}</h2>
+                    <p class="project-description">${project.description}</p>
+                    <div class="link-container">
+                        <span class="link-text">${project.link}</span>
+                        <button class="copy-btn" onclick="copyToClipboard('${project.link}', this)" title="Копировать ссылку">
+                            <i class="far fa-copy"></i>
+                        </button>
+                    </div>
+                    <a href="${project.link}" target="_blank" class="open-btn">
+                        <i class="fas fa-external-link-alt"></i>
+                        Открыть сайт
+                    </a>
+                `;
+                
+                container.appendChild(card);
+            });
+        }
+
+        function renderAnnouncements() {
+            const container = document.getElementById('announcements-container');
+            if (!container || !announcementsData) return;
+            
+            container.innerHTML = '';
+            
+            announcementsData.forEach(announcement => {
+                const card = document.createElement('div');
+                card.className = 'announcement-card';
+                
+                card.innerHTML = `
+                    <span class="announcement-badge badge-${announcement.badge}">
+                        <i class="fas ${announcement.icon}" style="margin-right: 5px; font-size: 0.7rem;"></i>
+                        ${announcement.badgeText}
+                    </span>
+                    <span class="announcement-text">${announcement.text}</span>
+                    <span class="announcement-date">
+                        <i class="far ${announcement.badge === 'news' ? 'fa-calendar-alt' : 'fa-clock'}"></i>
+                        ${announcement.date}
+                    </span>
+                `;
+                
+                container.appendChild(card);
+            });
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            renderProjects();
+            renderAnnouncements();
+        });
+    </script>
+</body>
+</html>
