@@ -13,7 +13,7 @@ const projectsData = [
         description: "Образовательный хаб. Здесь будет много полезного для учебы.",
         link: "https://bthebfr.github.io/lap-convert/",
         status: "active",
-        statusText: "Активно"  #В_разработке #wip
+        statusText: "Активно"  
     },
     {
         title: "Work",
