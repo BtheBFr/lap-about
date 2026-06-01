@@ -10,7 +10,7 @@ const projectsData = [
     {
         title: "Lap Convert",
         titleSecondLine: "Конвертор",
-        description: "Конвертируй что за хочешь.",
+        description: "Конвертируй что захочешь.",
         link: "https://bthebfr.github.io/lap-convert/",
         status: "active",
         statusText: "Активно"  
@@ -18,7 +18,7 @@ const projectsData = [
     {
         title: "Lap TikTok",
         titleSecondLine: "Установщик",
-        description: "Совместный проект. Готовим что-то особенное.",
+        description: "Установщик мода TikTokModCloud",
         link: "https://clck.su/lap-tiktok",
         status: "active",
         statusText: "Активно"
