@@ -45,38 +45,53 @@
             font-size: clamp(0.85rem, 4vw, 1rem);
         }
 
+        /* Табличный стиль для анонсов — строго по колонкам */
         .announcements {
             display: flex;
-            flex-wrap: wrap;
+            flex-direction: column;
             gap: 10px;
-            justify-content: center;
             margin: 20px 0 24px 0;
         }
 
+        /* Каждая карточка — это строка таблицы */
         .announcement-card {
             background: rgba(30, 34, 42, 0.8);
             backdrop-filter: blur(10px);
             border: 1px solid rgba(255, 255, 255, 0.06);
-            border-radius: 60px;
-            padding: 8px 16px;
-            display: flex;
+            border-radius: 16px;
+            padding: 10px 16px;
+            display: grid;
+            grid-template-columns: 110px 1fr 90px;
             align-items: center;
-            justify-content: space-between;
-            gap: 12px;
+            gap: 16px;
             transition: all 0.2s ease;
         }
 
-        /* На телефонах карточки анонсов занимают всю ширину */
+        /* На телефонах делаем колонки уже */
         @media (max-width: 550px) {
             .announcement-card {
-                width: 100%;
-                padding: 10px 14px;
+                grid-template-columns: 95px 1fr 70px;
+                gap: 10px;
+                padding: 10px 12px;
             }
         }
 
-        /* Левая часть с бейджем */
+        /* На совсем маленьких экранах — три строки */
+        @media (max-width: 450px) {
+            .announcement-card {
+                grid-template-columns: 1fr;
+                gap: 8px;
+                text-align: center;
+            }
+            .announcement-left,
+            .announcement-right {
+                justify-self: center;
+            }
+        }
+
+        /* Левая колонка — бейдж */
         .announcement-left {
-            flex-shrink: 0;
+            justify-self: start;
         }
 
         .announcement-badge {
@@ -101,10 +116,10 @@
             border: 1px solid #4c566a60;
         }
 
-        /* Центральная часть с текстом — растягивается, текст выравнивается по левому краю */
+        /* Центральная колонка — текст */
         .announcement-center {
-            flex: 1;
-            min-width: 0;
+            justify-self: start;
+            width: 100%;
         }
 
         .announcement-text {
@@ -116,9 +131,17 @@
             text-overflow: ellipsis;
         }
 
-        /* Правая часть с датой */
+        @media (max-width: 550px) {
+            .announcement-text {
+                font-size: 0.8rem;
+                white-space: normal;
+                word-break: break-word;
+            }
+        }
+
+        /* Правая колонка — дата */
         .announcement-right {
-            flex-shrink: 0;
+            justify-self: end;
         }
 
         .announcement-date {
@@ -131,37 +154,8 @@
         }
 
         @media (max-width: 550px) {
-            .announcement-text {
-                font-size: 0.8rem;
-            }
             .announcement-date {
                 font-size: 0.65rem;
-            }
-            .announcement-badge {
-                font-size: 0.65rem;
-                padding: 3px 8px;
-            }
-        }
-
-        /* Если экран совсем узкий — разрешаем перенос */
-        @media (max-width: 450px) {
-            .announcement-card {
-                flex-wrap: wrap;
-                gap: 8px;
-            }
-            .announcement-center {
-                flex: 1 1 100%;
-                order: 1;
-            }
-            .announcement-text {
-                white-space: normal;
-                text-align: center;
-            }
-            .announcement-left {
-                order: 0;
-            }
-            .announcement-right {
-                order: 2;
             }
         }
 
