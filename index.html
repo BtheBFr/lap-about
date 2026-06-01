@@ -50,7 +50,7 @@
             letter-spacing: 0.3px;
         }
 
-        /* ========== АНОНСЫ ========== */
+        /* Анонсы на ПК */
         .announcements {
             display: flex;
             flex-wrap: wrap;
@@ -59,7 +59,6 @@
             margin: 1.5rem 0 2rem 0;
         }
 
-        /* ПК: горизонтальные карточки (как у тебя работало) */
         .announcement-card {
             background: rgba(30, 34, 42, 0.8);
             backdrop-filter: blur(10px);
@@ -106,53 +105,69 @@
             font-weight: 500;
         }
 
+        /* Даты на ПК с идеальным выравниванием иконки */
         .announcement-date {
             color: rgba(203, 213, 225, 0.5);
             font-size: 0.8rem;
             display: inline-flex;
             align-items: center;
             gap: 0.3rem;
+            line-height: 1;
+        }
+        .announcement-date i {
+            display: inline-flex;
+            align-items: center;
+            line-height: 1;
         }
 
-        /* ========== ТОЛЬКО ТЕЛЕФОН ========== */
+        /* ========== ТЕЛЕФОН ========== */
         @media (max-width: 768px) {
+            /* Анонсы вертикально, чуть меньше */
             .announcements {
                 flex-direction: column;
-                gap: 12px;
+                gap: 10px;
             }
-
-            /* Каждая карточка — вертикальная, строго по центру, одинакового размера */
             .announcement-card {
                 display: flex;
                 flex-direction: column;
                 align-items: center;
-                justify-content: center;
                 text-align: center;
-                gap: 8px;
-                padding: 16px 12px;
-                border-radius: 24px;
+                gap: 6px;
+                padding: 12px 10px;
+                border-radius: 20px;
                 width: 100%;
-                min-height: 120px; /* одинаковая высота */
             }
-
             .announcement-badge {
-                align-self: center;
-                margin-bottom: 4px;
+                font-size: 0.7rem;
+                padding: 0.2rem 0.8rem;
             }
-
             .announcement-text {
-                font-size: 0.9rem;
-                text-align: center;
-                padding: 0 8px;
+                font-size: 0.85rem;
+            }
+            .announcement-date {
+                font-size: 0.7rem;
             }
 
-            .announcement-date {
-                justify-content: center;
-                margin-top: 4px;
+            /* Карточки проектов меньше */
+            .projects-grid {
+                gap: 12px;
+            }
+            .project-card {
+                padding: 14px;
+            }
+            .project-title {
+                font-size: 1.2rem;
+            }
+            .project-description {
+                font-size: 0.8rem;
+            }
+            .open-btn {
+                padding: 0.5rem;
+                font-size: 0.8rem;
             }
         }
 
-        /* ========== КАРТОЧКИ ПРОЕКТОВ ========== */
+        /* Карточки проектов (общие) */
         .projects-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
@@ -322,26 +337,6 @@
             margin-top: 2rem;
             color: #4b5563;
             font-size: 0.8rem;
-        }
-
-        /* Телефон: карточки проектов меньше */
-        @media (max-width: 768px) {
-            .projects-grid {
-                gap: 12px;
-            }
-            .project-card {
-                padding: 14px;
-            }
-            .project-title {
-                font-size: 1.2rem;
-            }
-            .project-description {
-                font-size: 0.8rem;
-            }
-            .open-btn {
-                padding: 0.5rem;
-                font-size: 0.8rem;
-            }
         }
     </style>
 </head>
