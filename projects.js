@@ -1,9 +1,9 @@
 const projectsData = [
     {
-        title: "B the B",
-        titleSecondLine: "Информация",
-        description: "Все площадки, все треки. Слушай где удобно. Подписывайся",
-        link: "https://band.link/btheb",
+        title: "Lap FM",
+        titleSecondLine: "Радио",
+        description: "Лучшее радио с лучшей музыкой",
+        link: "https://clck.su/lap-fm",
         status: "active",
         statusText: "Активно"
     },
@@ -16,28 +16,38 @@ const projectsData = [
         statusText: "Активно"  
     },
     {
-        title: "Lap Files",
+        title: "Lap TikTok",
         titleSecondLine: "Коллаборация с B the B и Заводом Осколки",
         description: "Совместный проект. Готовим что-то особенное.",
         link: "",
         status: "soon",
         statusText: "Скоро"
-    }
+    },
+    {
+        title: "Lap Convert",
+        titleSecondLine: "Конвертация",
+        description: "Конвертируй что за хочешь.",
+        link: "https://bthebfr.github.io/lap-convert/",
+        status: "active",
+        statusText: "Активно"  
+    },
 ];
 
 const announcementsData = [
     {
         badge: "news",
         badgeText: "Новость",
-        text: "Открылся этот сайт-навигатор",
-        date: "Сегодня",
+        text: "Открылся Lap TikTok",
+        date: "1 июня",
         icon: "fa-star"
     },
     {
         badge: "upcoming",
         badgeText: "Предстоящее",
-        text: "Скоро коллаборация с Заводом Осколки",
-        date: "Март 2026",
+        text: "Сайт с фильма и сериалами",
+        date: "Июнь 2026",
         icon: "fa-hourglass-half"
     }
 ];
+// icon: "fa-hourglass-half"
+// icon: "fa-star"
