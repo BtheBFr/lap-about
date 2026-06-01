@@ -58,13 +58,22 @@
             backdrop-filter: blur(10px);
             border: 1px solid rgba(255, 255, 255, 0.06);
             border-radius: 60px;
-            padding: 8px 14px;
+            padding: 6px 12px;
             display: flex;
             flex-wrap: wrap;
             align-items: center;
             justify-content: center;
             gap: 8px;
             transition: all 0.2s ease;
+        }
+
+        /* На телефонах карточки анонсов занимают всю ширину */
+        @media (max-width: 550px) {
+            .announcement-card {
+                width: 100%;
+                justify-content: space-between;
+                padding: 8px 14px;
+            }
         }
 
         .announcement-badge {
@@ -74,6 +83,8 @@
             font-weight: 700;
             letter-spacing: 0.5px;
             text-transform: uppercase;
+            white-space: nowrap;
+            flex-shrink: 0;
         }
 
         .badge-news {
@@ -91,6 +102,8 @@
             color: #e2e8f0;
             font-size: 0.85rem;
             font-weight: 500;
+            flex: 1;
+            text-align: left;
         }
 
         .announcement-date {
@@ -99,6 +112,21 @@
             display: flex;
             align-items: center;
             gap: 4px;
+            white-space: nowrap;
+            flex-shrink: 0;
+        }
+
+        @media (max-width: 550px) {
+            .announcement-text {
+                font-size: 0.8rem;
+            }
+            .announcement-date {
+                font-size: 0.65rem;
+            }
+            .announcement-badge {
+                font-size: 0.65rem;
+                padding: 3px 8px;
+            }
         }
 
         .projects-grid {
@@ -108,7 +136,6 @@
             margin-top: 16px;
         }
 
-        /* На планшетах — 2 колонки */
         @media (min-width: 600px) {
             .projects-grid {
                 grid-template-columns: repeat(2, 1fr);
@@ -116,7 +143,6 @@
             }
         }
 
-        /* На десктопах — 3 колонки */
         @media (min-width: 1000px) {
             .projects-grid {
                 grid-template-columns: repeat(3, 1fr);
@@ -224,7 +250,6 @@
             font-family: monospace;
         }
 
-        /* Для телефонов — ссылка с прокруткой */
         @media (max-width: 500px) {
             .link-text {
                 font-size: 0.65rem;
@@ -326,7 +351,6 @@
             padding-bottom: 10px;
         }
 
-        /* Убираем скролл у body, если что-то вылезает */
         body {
             overflow-x: hidden;
         }
