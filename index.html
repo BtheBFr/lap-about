@@ -50,6 +50,7 @@
             letter-spacing: 0.3px;
         }
 
+        /* Анонсы: на ПК горизонтальные, на телефоне вертикальные */
         .announcements {
             display: flex;
             flex-wrap: wrap;
@@ -84,6 +85,7 @@
             font-weight: 700;
             letter-spacing: 0.5px;
             text-transform: uppercase;
+            white-space: nowrap;
         }
 
         .badge-news {
@@ -106,43 +108,47 @@
         .announcement-date {
             color: rgba(203, 213, 225, 0.5);
             font-size: 0.8rem;
-            display: flex;
+            display: inline-flex;
             align-items: center;
             gap: 0.3rem;
+            white-space: nowrap;
         }
 
-        /* 📱 ТОЛЬКО ТЕЛЕФОН — карточки анонсов вертикально, одинакового размера */
+        .announcement-date i {
+            display: inline-flex;
+            align-items: center;
+        }
+
+        /* 📱 Телефон: анонсы вертикально, одинаковые, по центру */
         @media (max-width: 768px) {
             .announcements {
                 flex-direction: column;
                 gap: 12px;
             }
-            
             .announcement-card {
                 display: flex;
                 flex-direction: column;
                 align-items: center;
+                justify-content: center;
                 text-align: center;
                 gap: 8px;
                 padding: 16px 12px;
                 border-radius: 20px;
                 width: 100%;
             }
-            
             .announcement-badge {
                 align-self: center;
             }
-            
             .announcement-text {
                 font-size: 0.9rem;
+                text-align: center;
             }
-            
             .announcement-date {
                 justify-content: center;
             }
         }
 
-        /* Карточки проектов — маленькие и компактные */
+        /* Карточки проектов: уменьшенные, одинаковые на ПК и телефоне (телефон компактнее) */
         .projects-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
@@ -193,12 +199,6 @@
             background: rgba(158, 128, 62, 0.2);
             color: #e0af68;
             border-color: #e0af6840;
-        }
-
-        .status.wip {
-            background: rgba(73, 127, 103, 0.2);
-            color: #9ece6a;
-            border-color: #9ece6a40;
         }
 
         .project-title {
@@ -320,27 +320,26 @@
             font-size: 0.8rem;
         }
 
-        /* 📱 ТОЛЬКО ТЕЛЕФОН — карточки проектов компактнее */
+        /* 📱 Телефон: карточки проектов компактнее */
         @media (max-width: 768px) {
             .projects-grid {
                 gap: 12px;
             }
-            
             .project-card {
                 padding: 14px;
             }
-            
             .project-title {
                 font-size: 1.2rem;
             }
-            
             .project-description {
                 font-size: 0.8rem;
             }
-            
             .open-btn {
                 padding: 0.5rem;
                 font-size: 0.8rem;
+            }
+            .link-text {
+                font-size: 0.7rem;
             }
         }
     </style>
@@ -386,7 +385,7 @@
                 setTimeout(() => {
                     toast.classList.remove('show');
                 }, 2000);
-            }).catch(err => {
+            }).catch(() => {
                 const textarea = document.createElement('textarea');
                 textarea.value = text;
                 document.body.appendChild(textarea);
