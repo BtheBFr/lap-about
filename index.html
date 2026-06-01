@@ -50,7 +50,7 @@
             letter-spacing: 0.3px;
         }
 
-        /* Анонсы: на ПК горизонтальные, на телефоне вертикальные */
+        /* ========== АНОНСЫ ========== */
         .announcements {
             display: flex;
             flex-wrap: wrap;
@@ -59,6 +59,7 @@
             margin: 1.5rem 0 2rem 0;
         }
 
+        /* ПК: горизонтальные карточки (как у тебя работало) */
         .announcement-card {
             background: rgba(30, 34, 42, 0.8);
             backdrop-filter: blur(10px);
@@ -111,20 +112,16 @@
             display: inline-flex;
             align-items: center;
             gap: 0.3rem;
-            white-space: nowrap;
         }
 
-        .announcement-date i {
-            display: inline-flex;
-            align-items: center;
-        }
-
-        /* 📱 Телефон: анонсы вертикально, одинаковые, по центру */
+        /* ========== ТОЛЬКО ТЕЛЕФОН ========== */
         @media (max-width: 768px) {
             .announcements {
                 flex-direction: column;
                 gap: 12px;
             }
+
+            /* Каждая карточка — вертикальная, строго по центру, одинакового размера */
             .announcement-card {
                 display: flex;
                 flex-direction: column;
@@ -133,22 +130,29 @@
                 text-align: center;
                 gap: 8px;
                 padding: 16px 12px;
-                border-radius: 20px;
+                border-radius: 24px;
                 width: 100%;
+                min-height: 120px; /* одинаковая высота */
             }
+
             .announcement-badge {
                 align-self: center;
+                margin-bottom: 4px;
             }
+
             .announcement-text {
                 font-size: 0.9rem;
                 text-align: center;
+                padding: 0 8px;
             }
+
             .announcement-date {
                 justify-content: center;
+                margin-top: 4px;
             }
         }
 
-        /* Карточки проектов: уменьшенные, одинаковые на ПК и телефоне (телефон компактнее) */
+        /* ========== КАРТОЧКИ ПРОЕКТОВ ========== */
         .projects-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
@@ -320,7 +324,7 @@
             font-size: 0.8rem;
         }
 
-        /* 📱 Телефон: карточки проектов компактнее */
+        /* Телефон: карточки проектов меньше */
         @media (max-width: 768px) {
             .projects-grid {
                 gap: 12px;
@@ -337,9 +341,6 @@
             .open-btn {
                 padding: 0.5rem;
                 font-size: 0.8rem;
-            }
-            .link-text {
-                font-size: 0.7rem;
             }
         }
     </style>
@@ -373,18 +374,13 @@
                 buttonElement.classList.add('copied');
                 const originalIcon = buttonElement.innerHTML;
                 buttonElement.innerHTML = '<i class="fas fa-check"></i>';
-                
                 const toast = document.getElementById('toast');
                 toast.classList.add('show');
-                
                 setTimeout(() => {
                     buttonElement.classList.remove('copied');
                     buttonElement.innerHTML = originalIcon;
                 }, 1500);
-                
-                setTimeout(() => {
-                    toast.classList.remove('show');
-                }, 2000);
+                setTimeout(() => toast.classList.remove('show'), 2000);
             }).catch(() => {
                 const textarea = document.createElement('textarea');
                 textarea.value = text;
@@ -392,10 +388,8 @@
                 textarea.select();
                 document.execCommand('copy');
                 document.body.removeChild(textarea);
-                
                 buttonElement.classList.add('copied');
                 setTimeout(() => buttonElement.classList.remove('copied'), 1500);
-                
                 const toast = document.getElementById('toast');
                 toast.classList.add('show');
                 setTimeout(() => toast.classList.remove('show'), 2000);
@@ -406,24 +400,17 @@
             const container = document.getElementById('projects-container');
             if (!container || typeof projectsData === 'undefined') return;
             container.innerHTML = '';
-            
             projectsData.forEach(project => {
                 const card = document.createElement('div');
                 card.className = 'project-card';
-                
                 let titleHtml = project.title;
-                if (project.titleSecondLine) {
-                    titleHtml = project.title + '<br>' + project.titleSecondLine;
-                }
-                
+                if (project.titleSecondLine) titleHtml = project.title + '<br>' + project.titleSecondLine;
                 let iconClass = 'fa-clock';
                 if (project.status === 'active') iconClass = 'fa-check-circle';
                 if (project.status === 'wip') iconClass = 'fa-code-branch';
                 if (project.status === 'soon') iconClass = 'fa-clock';
-                
                 const link = project.link || '';
                 const hasLink = link && link !== '';
-                
                 card.innerHTML = `
                     <span class="status ${project.status}"><i class="fas ${iconClass}" style="margin-right: 5px;"></i> ${project.statusText}</span>
                     <h2 class="project-title">${titleHtml}</h2>
@@ -439,7 +426,6 @@
                         ${hasLink ? 'Открыть сайт' : 'Скоро появится'}
                     </a>
                 `;
-                
                 container.appendChild(card);
             });
         }
@@ -447,13 +433,10 @@
         function renderAnnouncements() {
             const container = document.getElementById('announcements-container');
             if (!container || typeof announcementsData === 'undefined') return;
-            
             container.innerHTML = '';
-            
             announcementsData.forEach(announcement => {
                 const card = document.createElement('div');
                 card.className = 'announcement-card';
-                
                 card.innerHTML = `
                     <span class="announcement-badge badge-${announcement.badge}">
                         <i class="fas ${announcement.icon || (announcement.badge === 'news' ? 'fa-star' : 'fa-hourglass-half')}" style="margin-right: 5px; font-size: 0.7rem;"></i>
@@ -465,7 +448,6 @@
                         ${announcement.date}
                     </span>
                 `;
-                
                 container.appendChild(card);
             });
         }
