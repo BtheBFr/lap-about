@@ -9,7 +9,7 @@ const projectsData = [
     },
     {
         title: "Lap Convert",
-        titleSecondLine: "Конвертация",
+        titleSecondLine: "Конвертор",
         description: "Конвертируй что за хочешь.",
         link: "https://bthebfr.github.io/lap-convert/",
         status: "active",
@@ -17,15 +17,15 @@ const projectsData = [
     },
     {
         title: "Lap TikTok",
-        titleSecondLine: "Новый установщик TikTokModCloud",
+        titleSecondLine: "Установщик",
         description: "Совместный проект. Готовим что-то особенное.",
-        link: "",
-        status: "soon",
-        statusText: "Скоро"
+        link: "https://clck.su/lap-tiktok",
+        status: "active",
+        statusText: "Активно"
     },
     {
-        title: "Lap Convert",
-        titleSecondLine: "Конвертация",
+        title: "Lap Films",
+        titleSecondLine: "Фильмы и сериалы",
         description: "Конвертируй что за хочешь.",
         link: "https://bthebfr.github.io/lap-convert/",
         status: "active",
@@ -51,3 +51,6 @@ const announcementsData = [
 ];
 // icon: "fa-hourglass-half"
 // icon: "fa-star"
+
+// status: "soon",
+// statusText: "Скоро"
