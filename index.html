@@ -58,12 +58,11 @@
             backdrop-filter: blur(10px);
             border: 1px solid rgba(255, 255, 255, 0.06);
             border-radius: 60px;
-            padding: 6px 12px;
+            padding: 8px 16px;
             display: flex;
-            flex-wrap: wrap;
             align-items: center;
-            justify-content: center;
-            gap: 8px;
+            justify-content: space-between;
+            gap: 12px;
             transition: all 0.2s ease;
         }
 
@@ -71,20 +70,24 @@
         @media (max-width: 550px) {
             .announcement-card {
                 width: 100%;
-                justify-content: space-between;
-                padding: 8px 14px;
+                padding: 10px 14px;
             }
         }
 
+        /* Левая часть с бейджем */
+        .announcement-left {
+            flex-shrink: 0;
+        }
+
         .announcement-badge {
-            padding: 4px 10px;
+            padding: 4px 12px;
             border-radius: 60px;
             font-size: 0.7rem;
             font-weight: 700;
             letter-spacing: 0.5px;
             text-transform: uppercase;
             white-space: nowrap;
-            flex-shrink: 0;
+            display: inline-block;
         }
 
         .badge-news {
@@ -98,12 +101,24 @@
             border: 1px solid #4c566a60;
         }
 
+        /* Центральная часть с текстом — растягивается, текст выравнивается по левому краю */
+        .announcement-center {
+            flex: 1;
+            min-width: 0;
+        }
+
         .announcement-text {
             color: #e2e8f0;
             font-size: 0.85rem;
             font-weight: 500;
-            flex: 1;
-            text-align: left;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        /* Правая часть с датой */
+        .announcement-right {
+            flex-shrink: 0;
         }
 
         .announcement-date {
@@ -113,7 +128,6 @@
             align-items: center;
             gap: 4px;
             white-space: nowrap;
-            flex-shrink: 0;
         }
 
         @media (max-width: 550px) {
@@ -126,6 +140,28 @@
             .announcement-badge {
                 font-size: 0.65rem;
                 padding: 3px 8px;
+            }
+        }
+
+        /* Если экран совсем узкий — разрешаем перенос */
+        @media (max-width: 450px) {
+            .announcement-card {
+                flex-wrap: wrap;
+                gap: 8px;
+            }
+            .announcement-center {
+                flex: 1 1 100%;
+                order: 1;
+            }
+            .announcement-text {
+                white-space: normal;
+                text-align: center;
+            }
+            .announcement-left {
+                order: 0;
+            }
+            .announcement-right {
+                order: 2;
             }
         }
 
@@ -471,15 +507,21 @@
                 card.className = 'announcement-card';
                 
                 card.innerHTML = `
-                    <span class="announcement-badge badge-${announcement.badge}">
-                        <i class="fas ${announcement.icon || (announcement.badge === 'news' ? 'fa-star' : 'fa-hourglass-half')}" style="margin-right: 4px; font-size: 0.65rem;"></i>
-                        ${announcement.badgeText}
-                    </span>
-                    <span class="announcement-text">${announcement.text}</span>
-                    <span class="announcement-date">
-                        <i class="far ${announcement.badge === 'news' ? 'fa-calendar-alt' : 'fa-clock'}"></i>
-                        ${announcement.date}
-                    </span>
+                    <div class="announcement-left">
+                        <span class="announcement-badge badge-${announcement.badge}">
+                            <i class="fas ${announcement.icon || (announcement.badge === 'news' ? 'fa-star' : 'fa-hourglass-half')}" style="margin-right: 4px; font-size: 0.65rem;"></i>
+                            ${announcement.badgeText}
+                        </span>
+                    </div>
+                    <div class="announcement-center">
+                        <span class="announcement-text">${announcement.text}</span>
+                    </div>
+                    <div class="announcement-right">
+                        <span class="announcement-date">
+                            <i class="far ${announcement.badge === 'news' ? 'fa-calendar-alt' : 'fa-clock'}"></i>
+                            ${announcement.date}
+                        </span>
+                    </div>
                 `;
                 
                 container.appendChild(card);
