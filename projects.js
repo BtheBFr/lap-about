@@ -3,7 +3,7 @@ const projectsData = [
         title: "Lap FM",
         titleSecondLine: "Радио",
         description: "Лучшее радио с лучшей музыкой",
-        link: "https://clck.su/lap-fm",
+        link: "https://clck.su/lapfm",
         status: "active",
         statusText: "Активно"
     },
@@ -17,7 +17,7 @@ const projectsData = [
     },
     {
         title: "Lap TikTok",
-        titleSecondLine: "Коллаборация с B the B и Заводом Осколки",
+        titleSecondLine: "Новый установщик TikTokModCloud",
         description: "Совместный проект. Готовим что-то особенное.",
         link: "",
         status: "soon",
