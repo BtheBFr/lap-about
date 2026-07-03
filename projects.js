@@ -23,6 +23,14 @@ const projectsData = [
         status: "soon",
         statusText: "Скоро"  
     },
+    {
+        title: "Lap Proxy",
+        titleSecondLine: "MTProto",
+        description: "Локальный MTProto для Telegram",
+        link: "https://bthebfr.github.io/lap-convert/",
+        status: "soon",
+        statusText: "Скоро"  
+    },
 ];
 
 const announcementsData = [
