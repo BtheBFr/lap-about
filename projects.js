@@ -37,15 +37,15 @@ const announcementsData = [
     {
         badge: "news",
         badgeText: "Новость",
-        text: "Открылся Lap TikTok",
-        date: "1 июня",
+        text: "Открылся Lap Proxy",
+        date: "3 июля",
         icon: "fa-star"
     },
     {
         badge: "upcoming",
         badgeText: "Предстоящее",
         text: "Сайт с фильма и сериалами",
-        date: "Июнь 2026",
+        date: "Август 2026",
         icon: "fa-hourglass-half"
     }
 ];
