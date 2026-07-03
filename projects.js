@@ -4,8 +4,8 @@ const projectsData = [
         titleSecondLine: "Конвертер",
         description: "Конвертируй что захочешь.",
         link: "https://bthebfr.github.io/lapshort/lapcomp/LapConvert",
-        status: "active",
-        statusText: "Активно"  
+        status: "wip",
+        statusText: "Акивно"  
     },
     {
         title: "Lap TikTok",
@@ -20,8 +20,8 @@ const projectsData = [
         titleSecondLine: "Фильмы и сериалы",
         description: "Конвертируй что за хочешь.",
         link: "https://bthebfr.github.io/lap-convert/",
-        status: "active",
-        statusText: "Активно"  
+        status: "soon",
+        statusText: "Скоро"  
     },
 ];
 
