@@ -62,3 +62,4 @@ const announcementsData = [
 
 // status: "soon",
 // statusText: "Скоро"
+//
