@@ -1,25 +1,17 @@
 const projectsData = [
     {
-        title: "Lap FM",
-        titleSecondLine: "Радио",
-        description: "Лучшее радио с лучшей музыкой",
-        link: "https://clck.su/lapfm",
-        status: "active",
-        statusText: "Активно"
-    },
-    {
         title: "Lap Convert",
-        titleSecondLine: "Конвертор",
+        titleSecondLine: "Конвертер",
         description: "Конвертируй что захочешь.",
-        link: "https://bthebfr.github.io/lap-convert/",
+        link: "https://bthebfr.github.io/lapshort/lapcomp/LapConvert",
         status: "active",
         statusText: "Активно"  
     },
     {
         title: "Lap TikTok",
         titleSecondLine: "Установщик",
-        description: "Установщик мода TikTokModCloud",
-        link: "https://clck.su/lap-tiktok",
+        description: "Установщик мода TikTokYou",
+        link: "https://bthebfr.github.io/lapshort/lapcomp/LapTikTok",
         status: "active",
         statusText: "Активно"
     },
