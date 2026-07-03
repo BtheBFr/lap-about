@@ -27,7 +27,7 @@ const projectsData = [
         title: "Lap Proxy",
         titleSecondLine: "MTProto",
         description: "Локальный MTProto для Telegram.",
-        link: "https://bthebfr.github.io/lap-convert/",
+        link: "https://bthebfr.github.io/lapshort/lapcomp/LapProxy",
         status: "active",
         statusText: "Активно"  
     },
