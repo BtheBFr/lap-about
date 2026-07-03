@@ -4,33 +4,41 @@ const projectsData = [
         titleSecondLine: "Конвертер",
         description: "Конвертируй что захочешь.",
         link: "https://bthebfr.github.io/lapshort/lapcomp/LapConvert",
-        status: "wip",
-        statusText: "Акивно"  
+        status: "active",
+        statusText: "Активно"  
     },
     {
         title: "Lap TikTok",
         titleSecondLine: "Установщик",
-        description: "Установщик мода TikTokYou",
+        description: "Установщик мода TikTokYou.",
         link: "https://bthebfr.github.io/lapshort/lapcomp/LapTikTok",
         status: "active",
         statusText: "Активно"
     },
     {
         title: "Lap Films",
-        titleSecondLine: "Фильмы и сериалы",
-        description: "Конвертируй что за хочешь.",
-        link: "https://bthebfr.github.io/lap-convert/",
+        titleSecondLine: "Кино",
+        description: "Смотри фильмы и сериалы",
+        link: "Скоро",
         status: "soon",
         statusText: "Скоро"  
     },
     {
         title: "Lap Proxy",
         titleSecondLine: "MTProto",
-        description: "Локальный MTProto для Telegram",
+        description: "Локальный MTProto для Telegram.",
         link: "https://bthebfr.github.io/lap-convert/",
-        status: "soon",
-        statusText: "Скоро"  
+        status: "active",
+        statusText: "Активно"  
     },
+    {
+        title: "Lap FM",
+        titleSecondLine: "Радио",
+        description: "Новости, музыка для Вас.",
+        link: "Не работает",
+        status: "wip",
+        statusText: "Не работает"  
+    }
 ];
 
 const announcementsData = [
